@@ -1,4 +1,4 @@
-#This analysis utilized the following Fortune 500 dataset:
+--This analysis utilized the following Fortune 500 dataset:
 
 CREATE TABLE fortune_companies (
     company_id INTEGER PRIMARY KEY,
@@ -58,21 +58,21 @@ VALUES
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
-#Analysis: 
+--Analysis: 
 
-#Identify companies with more than 12 weeks of maternity leave and a workforce exceeding 10,000 employees.
+--Identify companies with more than 12 weeks of maternity leave and a workforce exceeding 10,000 employees.
 
 SELECT company_name, employees, maternity_leave_weeks
 FROM fortune_companies
 WHERE maternity_leave_weeks>12
 AND employees>10000;
 
-#What is the average length of employee tenure, rounded to a whole number?
+--What is the average length of employee tenure, rounded to a whole number?
 
 SELECT company_name, ROUND(avg_employee_tenure) as employee_tenure_avg
 FROM fortune_companies;
 
-#Categorize companies by size according to their total employee count, labeling them as Small, Medium, or Large.
+--Categorize companies by size according to their total employee count, labeling them as Small, Medium, or Large.
 
 SELECT company_name, employees,
 CASE 
@@ -82,7 +82,7 @@ ELSE 'Large'
 END AS company_size
 FROM fortune_companies;
 
-#Which industries employ more than 2,000,000 people in total?
+--Which industries employ more than 2,000,000 people in total?
 
 SELECT industry,
 SUM(employees) AS total_employees
@@ -90,7 +90,7 @@ FROM fortune_companies
 GROUP BY industry
 HAVING SUM(employees) > 2000000;
 
-#Which companies offer more paid time off days than the average across all companies?
+--Which companies offer more paid time off days than the average across all companies?
 
 SELECT company_name, paid_time_off_days
 FROM fortune_companies
