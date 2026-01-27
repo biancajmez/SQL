@@ -123,6 +123,8 @@ INSERT INTO hotels VALUES
  , (3, 'Four Season''s', '900 Winter Road, Cityville, PA')
  ;
 
+--Analysis: 
+
 -- List all VIPs presenting at an event.
 
 SELECT v.first_name
