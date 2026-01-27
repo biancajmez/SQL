@@ -125,7 +125,7 @@ INSERT INTO hotels VALUES
 
 --Analysis: 
 
--- List all VIPs presenting at an event.
+--List all VIPs presenting at an event.
 
 SELECT v.first_name
 , v.last_name
@@ -135,7 +135,7 @@ FROM vips v
 INNER JOIN events e
 ON v.event = e.event_id;
 
--- Show all VIPs and their hotel reservations, including those without one.
+--Show all VIPs and their hotel reservations, including those without one.
 
 SELECT v.first_name
 , v.last_name
@@ -146,7 +146,7 @@ ON v.member_id = r.member_id
 LEFT JOIN hotels h
 ON r.hotel = h.hotel_id;
 
--- Combine speaker, event, and hotel information.
+--Combine speaker, event, and hotel information.
 
 SELECT v.first_name
 , v.last_name
@@ -160,7 +160,7 @@ ON v.member_id = r.member_id
 LEFT JOIN hotels h
 ON r.hotel = h.hotel_id;
 
--- Identify peer feedback relationships between VIP speakers.
+--Identify peer feedback relationships between VIP speakers.
 
 SELECT v1.first_name AS feedback_reviewer
 , v1.last_name AS reviewer_last
@@ -170,7 +170,7 @@ FROM vips v1
 INNER JOIN vips v2 
 ON v1.provides_feedback_to = v2.member_id;
 
--- Find VIPs staying at hotels with multiple VIP bookings.
+--Find VIPs staying at hotels with multiple VIP bookings.
 
 SELECT v.first_name
 , v.last_name
@@ -179,7 +179,7 @@ INNER JOIN reservations r
 ON v.member_id = r.member_id
 WHERE r.hotel IN (SELECT hotel FROM reservations GROUP BY hotel HAVING COUNT(*) > 1);
 
--- VIPs who RSVP'd yes to both the welcome party and thank you dinner.
+--VIPs who RSVP'd yes to both the welcome party and thank you dinner.
 
 SELECT v.first_name
 , v.last_name
