@@ -1,4 +1,4 @@
-Climate Conference Project
+--This analysis utilized the following Climate Conference dataset:
 
   CREATE TABLE vips (
      member_id INTEGER PRIMARY KEY
