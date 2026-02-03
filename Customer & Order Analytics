@@ -1,19 +1,22 @@
 --In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
 
 --How many orders were placed in January? 
+
 SELECT COUNT(distinct orderid)
 FROM BIT_DB.JanSales
 WHERE length(orderid) = 6
 AND orderid <> 'Order ID';
 
 --How many of those orders were for an iPhone? 
+
 SELECT COUNT(distinct orderid)
 FROM BIT_DB.JanSales
 WHERE product = 'iPhone'
 AND length(orderid) = 6
 AND orderid <> 'Order ID';
 
---Select the customer account numbers for all the orders that were placed in February. 
+--Select the customer account numbers for all the orders that were placed in February.
+
 SELECT distinct acctnum
 FROM BIT_DB.customers cust
 INNER JOIN BIT_DB.FebSales Feb
@@ -22,6 +25,7 @@ WHERE length(orderid) = 6
 AND orderid <> 'Order ID';
 
 --Which product was the cheapest one sold in January, and what was the price? 
+
 SELECT product, min(price)
 FROM BIT_DB.JanSales Jan
 GROUP BY product, price
@@ -29,12 +33,14 @@ ORDER BY price ASC
 LIMIT 1;
 
 --What is the total revenue for each product sold in January?
+
 SELECT sum(quantity)*price as revenue
 ,product
 FROM BIT_DB.JanSales
 GROUP BY product;
 
 --Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+
 SELECT
 sum(Quantity),
 product,
@@ -44,6 +50,7 @@ WHERE location = '548 Lincoln St, Seattle, WA 98101'
 GROUP BY product;
 
 --How many customers ordered more than 2 products at a time, and what was the average amount spent for those customers?
+
 SELECT
 count(distinct cust.acctnum),
 avg(quantity*price)
@@ -55,6 +62,7 @@ AND length(orderid) = 6
 AND orderid <> 'Order ID';
 
 --How many of each type of headphone were sold in February?
+
 SELECT product, SUM(quantity)
 FROM BIT_DB.FebSales
 WHERE Product LIKE '%Headphones%'
@@ -63,6 +71,7 @@ AND orderid <> 'Order ID'
 GROUP BY product;
 
 --What was the average amount spent per account in February?
+
 SELECT avg(quantity*price)
 FROM BIT_DB.FebSales Feb
 LEFT JOIN BIT_DB.customers cust
@@ -71,6 +80,7 @@ WHERE length(orderid) = 6
 AND orderid <> 'Order ID';
 
 --Find order ids from Georgia (GA) where the order has an average price greater than $1,000. Only find orders from dates beginning with ‘04/1’.
+
 SELECT orderID
 FROM BIT_DB.AprSales
 WHERE orderdate LIKE '04/1%'
@@ -81,6 +91,7 @@ GROUP BY orderID
 HAVING AVG(price) > 1000;
 
 --Which product brought in the most revenue in January and how much revenue did it bring in total?
+
 SELECT product,
 sum(quantity*price)
 FROM BIT_DB.JanSales
